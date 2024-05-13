@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        OptiLine Preferences
+    </title>
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        }
+        a:link{
+            text-decoration: none;
+        }
+        
+        body{
+            padding: auto;
+            color: white;
+
+        }
+        h2 {
+            font-weight: normal;
+            text-align: center;
+            color: white;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        }
+
+        textarea {
+            border: none;
+            color: white;
+            padding: 5px;
+            width: 600px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            resize: none;
+            background-color: rgb(52, 53, 65);
+            font-family: 'Courier New', Courier, monospace;
+            margin-bottom: 20px;
+            box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        }
+        .genButton {
+            background-color: hsla(0, 0%, 100%, .05);
+            border: none;
+            width: fit-content;
+            height: 50px;
+            display: block;
+            margin-top: 10px;
+            margin-right: auto;
+            color: white;
+            font-size: 24px;
+    
+            box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)
+        }
+    
+        .genButton:hover {
+            background-color: rgba(255, 255, 255, 0.142);
+        }
+    </style>
+    <script>
+        // Function to set a cookie
+        function setCookie(name, value, days) {
+            var expires = "";
+            if (days) {
+                var date = new Date();
+                date.setTime(date.getTime() + (days*24*60*60*1000));
+                expires = "; expires=" + date.toUTCString();
+            }
+            document.cookie = name + "=" + (value || "")  + expires + "; path=/";
+        }
+
+        // Function to get a cookie
+        function getCookie(name) {
+            var nameEQ = name + "=";
+            var ca = document.cookie.split(';');
+            for(var i=0;i < ca.length;i++) {
+                var c = ca[i];
+                while (c.charAt(0)==' ') c = c.substring(1,c.length);
+                if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+            }
+            return null;
+        }
+
+        // Function to erase a cookie
+        function eraseCookie(name) {   
+            document.cookie = name+'=; Max-Age=-99999999;';  
+        }
+
+        // Load preferences from cookies when the page loads
+        window.onload = function() {
+            var preferences = JSON.parse(getCookie('preferences')) || {};
+            for (var key in preferences) {
+                var checkbox = document.getElementById(key);
+                if (checkbox) checkbox.checked = preferences[key];
+            }
+        };
+
+        // Save preferences to cookies when the button is clicked
+        function updatePreferences() {
+            var checkboxes = document.querySelectorAll('#prefForm input[type=radio]');
+            var preferences = {};
+            for (var i = 0; i < checkboxes.length; i++) {
+                preferences[checkboxes[i].id] = checkboxes[i].checked;
+            }
+            setCookie('preferences', JSON.stringify(preferences), 7);
+        }
+    </script>
+</head>
+<body style="background-color:rgba(49, 50, 66, 0.952) ;">
+    <div class="row">
+        <div>
+            <a href="./home.html">
+                <button class="genButton">
+                    Home
+                </button>
+            </a>
+        </div>
+
+        <form id="prefForm" name="prefForm" style="font-size: 24px;">
+            <input type="radio" id="packages" name="pref" unchecked />
+            <label for="packages">Find Package Dependencies</label><br>
+            <input type="radio" id="documentation" name="pref" unchecked />
+            <label for="packages">Provide Documentation</label><br>
+            <input type="radio" id="opti" name="pref" unchecked />
+            <label for="packages">Time/Memory Optimization</label><br>
+            <input type="radio" id="refactor" name="pref" unchecked />
+            <label for="packages">Code Refactoring</label><br>
+            <input type="radio" id="debug" name="pref" unchecked />
+            <label for="packages">Debug</label><br>
+        </form>
+
+        <a href="./home.html">
+            <button type="button" onclick="updatePreferences()" class="genButton">
+                Update Preferences
+            </button>
+        </a>        
+    </div>
+</body>
+</html>

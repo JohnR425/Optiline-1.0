@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/main.js"></script>
+    <title>
+        OptiLine
+    </title>
+    <style>
+        a:link{
+            text-decoration: none;
+        }
+        
+        h2 {
+            font-weight: normal;
+            text-align: center;
+            color: white;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        }
+    
+        textarea {
+            border: none;
+            color: white;
+            padding: 5px;
+            width: 600px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            resize: none;
+            background-color: rgb(52, 53, 65);
+            font-family: 'Courier New', Courier, monospace;
+            margin-bottom: 20px;
+            box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        }
+    
+        .genButton {
+            background-color: hsla(0, 0%, 100%, .05);
+            border: none;
+            width: fit-content;
+            height: 50px;
+            display: block;
+            margin-top: 10px;
+            margin-right: auto;
+            color: white;
+            font-size: 24px;
+    
+            box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)
+        }
+    
+        .genButton:hover {
+            background-color: rgba(255, 255, 255, 0.142);
+        }
+    
+        * {
+            box-sizing: border-box;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        }
+    
+        .column {
+            float: left;
+            width: 50%;
+            padding: 0px;
+            height: 550px;
+        }
+    
+        .row:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+        .output:hover{
+            color:rgb(103, 187, 215);
+        }
+    </style>
+    <meta charset="UTF-8">
+</head>
+
+
+<body onload="copyOutput()" style="background-color:rgba(49, 50, 66, 0.952) ;">
+    <div>
+        <a href="./prefs.html">
+            <button class="genButton" id="prefButton" type="button">
+                Preferences
+            </button>
+        </a>
+    </div>
+    <form id="f" name = 'f'>
+        <div class="row">
+            <div class="column">
+                <h2>Instructions: </h2>
+                <textarea style="height: 50px;" id="instructions" name="instructions" form="f"></textarea>
+                <h2>Code: </h2>
+                <textarea style="height: 325px;" id="codeblock" name="codeblock" form="f"></textarea>
+            </div>
+            <div class="column">
+                <h2>Code Output: </h2>
+                <textarea onclick="copyOutput()" class="output" readonly style="height: 450px;" id="output" name="output"></textarea>
+            </div>
+        </div>
+        <button class="genButton" id="button" type="button" onclick="debug()" style="margin-top: 0%; margin-left: auto;"> Debug </button>
+    </form>
+    <script>
+        // When the page loads, check if there is any saved data in localStorage
+        window.onload = function() {
+            if(localStorage.getItem('instructions')) {
+                document.getElementById('instructions').value = localStorage.getItem('instructions');
+            }
+            if(localStorage.getItem('codeblock')) {
+                document.getElementById('codeblock').value = localStorage.getItem('codeblock');
+            }
+        }
+
+        // Before the page unloads (when you navigate away), save the data to localStorage
+        window.onbeforeunload = function() {
+            localStorage.setItem('instructions', document.getElementById('instructions').value);
+            localStorage.setItem('codeblock', document.getElementById('codeblock').value);
+        }
+    </script>
+</body>
+
+</html>
