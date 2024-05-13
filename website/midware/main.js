@@ -90,7 +90,7 @@ function debug(){
     if(preferences.packages){
         prompt += "\nProvide a single line of code that I can put in terminal to download all of the necessary libraries or package dependencies for this code and a sentence for each package, explaining what it does.";
     } else if(preferences.documentation){
-        prompt += "\nRewrite this code with documentation in it. Include comments. Make sure not to change the input code under any circumstances, even if it doesn't match the instrunctions.";        
+        prompt += "\nSend back this code with documentation in it. Include comments. DO NOT CHANGE THE GIVEN CODE under any circumstances, even if it doesn't match the instrunctions.";        
     } else if (preferences.opti) {
         prompt += "\nRewrite this code to optimize time and memory. Explain what was changed as well.";
     } else if (preferences.refactor) {
