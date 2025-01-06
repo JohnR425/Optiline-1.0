@@ -6,40 +6,72 @@ Optiline is an AI-powered code optimizer/debugger that alters code based on user
 
 It offers users the ability to debug, optimize, or refactor their code, as well as the option to add inline comments and automatically create a command to download any package dependencies.
 
-INSTALLATION INSTRUCTIONS
----------------------------------------
+# Installation
 
-Ensure the latest versions of nvm and node.js are installed: https://nodejs.org/en/download/
+Follow these steps to install and run Optiline:
 
-Clone this repository into your local machine from the command line with the following command: 
-$ git clone https://github.com/JohnR425/Optiline-1.0.git
+---
 
-Navigate to the folder you cloned the repository to and switch to the Optiline-1.0 directory: 
-$cd Optiline-1.0
+## Prerequisites
 
-Then install the required dependencies: $npm install
+Ensure you have the latest versions of **nvm** and **Node.js** installed:  
+👉 [Download Node.js](https://nodejs.org/en/download/)
 
-To run optiline run the command: $npm run testServer
+---
 
-Access the webpage by entering “http://localhost:4999” into your browser’s search bar
+## Steps to Install
 
-CONFIGURATION
---------------------------
-Obtain a Google Gemini API Key (May not work with UMass email addresses): https://ai.google.dev/gemini-api/docs/api-key
+1. Clone the repository to your local machine:  
+   ```bash
+   git clone https://github.com/JohnR425/Optiline-1.0.git
 
-Then create a .env file in the root directory in Optiline-1.0 with the following line: API_KEY=YOUR_API_KEY
+2. Navigate to the project directory:
+   ```bash
+   cd Optiline-1.0
+3. Install the required dependencies:
+   ```bash
+   npm install
+4. Run the application:
+   ```bash
+   npm run testServer
+5. Open your browser and visit:
+   ```bash
+   http://localhost:4999
 
+# API Key Setup
 
-TESTING INSTRUCTIONS
----------------------------------------
-From the command line, cd into the Optiline-1.0 directory: $cd Optiline-1.0
+Follow these steps to configure the API key for Optiline:
 
-Install vitest: $npm i vitest 
+---
 
-For unit testing, run $npm test 
+1. **Obtain a Google Gemini API Key:**  
+   👉 [Google Gemini API Documentation](https://ai.google.dev/gemini-api/docs/api-key)  
+   **Note:** API key registration may not work with UMass email addresses.
 
+2. **Create a `.env` file:**  
+   In the root directory of the project, create a file named `.env` and add the following line:  
+   ```env
+   API_KEY=YOUR_API_KEY
 
-VIDEO 
----------------------------------------
-https://drive.google.com/file/d/1eSsH-CfE_1v1DdXLK_eIxmvkeRFrh10R/view?usp=sharing
+# Testing Instructions
+
+## Unit Testing
+
+Follow these steps to run unit tests for Optiline:
+
+1. Navigate to the project directory:  
+   ```bash
+   cd Optiline-1.0
+2. Install the testing framework vitest:
+   ```bash
+   npm i vitest
+3. Run the tests:
+   ```bash
+   npm test
+
+# Demonstration 🎥
+Check out the video demonstration of Optiline in action:
+
+[![](https://markdown-videos-api.jorgenkh.no/url?url=https%3A%2F%2Fyoutu.be%2FXra9PCkULtA%3Fsi%3Dh_X1DMihGkuHzs-B)](https://youtu.be/Xra9PCkULtA?si=h_X1DMihGkuHzs-B)
+
 
